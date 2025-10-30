@@ -5,25 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>影片展示</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background: black;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      background-color: #000;
+      overflow: hidden;
+    }
+
     video {
       width: 100vw;
       height: 100vh;
       object-fit: cover;
+      pointer-events: none; /* 禁止點擊喚出控制列 */
     }
-    video::-webkit-media-controls,
-video::-webkit-media-controls-enclosure,
-video::-webkit-media-controls-panel {
-  display: none !important;
-}
 
+    /* 強制隱藏所有控制元件 */
+    video::-webkit-media-controls,
+    video::-webkit-media-controls-enclosure,
+    video::-webkit-media-controls-panel,
+    video::-webkit-media-controls-overlay-play-button,
+    video::-moz-media-controls,
+    video::-ms-media-controls {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline controlslist="nodownload nofullscreen noremoteplayback">
     <source src="comp1.mp4" type="video/mp4" />
   </video>
 </body>
